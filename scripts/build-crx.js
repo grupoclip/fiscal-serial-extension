@@ -100,13 +100,20 @@ set -euo pipefail
 
 POLICY="${policyValue}"
 
+# Quit Chrome / Edge so they re-read the policy on next launch.
+/usr/bin/osascript -e 'tell application "Google Chrome" to quit' 2>/dev/null || true
+/usr/bin/osascript -e 'tell application "Microsoft Edge" to quit' 2>/dev/null || true
+
 for DOMAIN in com.google.Chrome com.microsoft.Edge; do
   /usr/bin/defaults write "$DOMAIN" ExtensionInstallForcelist -array "$POLICY"
-  echo "Wrote policy for $DOMAIN"
+  echo "Wrote policy for $DOMAIN -> $(/usr/bin/defaults read "$DOMAIN" ExtensionInstallForcelist)"
 done
 
+# Flush the cfprefsd cache so Chrome reads the new plist on next launch.
+/usr/bin/killall cfprefsd 2>/dev/null || true
+
 echo
-echo "Done. Fully quit and reopen Chrome / Edge for the policy to apply."
+echo "Done. Reopen Chrome / Edge and verify at chrome://policy (search 'ExtensionInstallForcelist')."
 `;
 }
 
