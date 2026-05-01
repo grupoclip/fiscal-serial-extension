@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Odoo Fiscal Printer Key",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Stores a fiscal printer serial number and exposes it via localStorage on odoo.com pages so the Odoo POS / fiscal module can read it.",
   "permissions": [
     "storage"
