@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fiscal Serial Data</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">📋</div>
+      <h1>Fiscal Serial Data</h1>
+    </header>
+
+    <div class="card">
+      <label for="serialInput">Serial Number</label>
+      <input
+        type="text"
+        id="serialInput"
+        placeholder="Enter serial number..."
+        autocomplete="off"
+      />
+
+      <div class="button-row">
+        <button id="saveBtn" class="btn-primary">Save</button>
+        <button id="resetBtn" class="btn-secondary">Reset</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </div>
+
+    <div class="info">
+      <p class="info-title">Stored in localStorage as:</p>
+      <code id="preview">{"serialNumber": "..."}</code>
+      <p class="info-key">Key: <strong>fiscalSerialData</strong></p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
