@@ -1,6 +1,6 @@
-# Odoo Fiscal Printer Key
+# ![alt text](icons/icon32.png "icon") Odoo Fiscal Printer Key
 
-![alt text](images/banner.png "Title")
+![alt text](images/banner.png "Banner")
 
 A Chrome extension that stores a fiscal printer serial number and writes it to
 `localStorage` on Odoo pages so the Odoo POS / fiscal module can read it.
