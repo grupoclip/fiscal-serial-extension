@@ -27,7 +27,7 @@ if (raw) {
 
 ## Installation
 
-Install from the Chrome Web Store: _link will be added once the listing is published_.
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/dphppcebonpdkglmmbnecmeneadohhai).
 
 ## Editing the serial number
 
