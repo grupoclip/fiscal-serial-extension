@@ -9,8 +9,8 @@ A Chrome extension that stores a fiscal printer serial number and writes it to
 
 - Stores a configurable serial number (default: `Z243333`).
 - On every page load under `odoo.com` and `*.odoo.com`, writes the value to that page's `localStorage`:
-  - **Key:** `fiscalSerialData`
-  - **Value:** `{"serialNumber": "Z243333"}` (or whatever you have set)
+    - **Key:** `fiscalSerialData`
+    - **Value:** `{"serialNumber": "Z243333"}` (or whatever you have set)
 - Provides a popup UI to view, edit, and reset the serial number.
 
 ## How the Odoo page reads it
@@ -18,8 +18,8 @@ A Chrome extension that stores a fiscal printer serial number and writes it to
 ```javascript
 const raw = localStorage.getItem('fiscalSerialData');
 if (raw) {
-  const { serialNumber } = JSON.parse(raw);
-  // use serialNumber...
+    const {serialNumber} = JSON.parse(raw);
+    // use serialNumber...
 }
 ```
 
@@ -36,7 +36,8 @@ Install from the Chrome Web Store: _link will be added once the listing is publi
 
 ## Privacy
 
-The extension stores the serial number locally via `chrome.storage.local`. Nothing is sent to any server. The serial is only written into the `localStorage` of pages on `odoo.com` and its subdomains.
+The extension stores the serial number locally via `chrome.storage.local`. Nothing is sent to any server. The serial is
+only written into the `localStorage` of pages on `odoo.com` and its subdomains.
 
 ## Files
 
@@ -50,7 +51,7 @@ The extension stores the serial number locally via `chrome.storage.local`. Nothi
 
 - The content script runs at `document_start`, so the value is in `localStorage` before page scripts run.
 - If a page clears `localStorage`, the value is re-written on the next page load (or on any popup edit).
-- Host scope is restricted to `*://odoo.com/*` and `*://*.odoo.com/*`.
+- Host scope is restricted to `*://odoo.com/*`, `*://*.odoo.com/*`,`*://odoo.dev/*` and `*://*.odoo.dev/*`.
 
 ## License
 
