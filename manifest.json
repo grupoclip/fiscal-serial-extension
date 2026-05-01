@@ -1,17 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Fiscal Serial Data",
+  "name": "Odoo Fiscal Printer Key",
   "version": "1.0.1",
-  "description": "Stores a fiscal serial number and writes it to localStorage on every website.",
+  "description": "Stores a fiscal printer serial number and exposes it via localStorage on odoo.com pages so the Odoo POS / fiscal module can read it.",
   "permissions": [
     "storage"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://odoo.com/*",
+    "*://*.odoo.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Fiscal Serial Data",
+    "default_title": "Odoo Fiscal Printer Key",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -24,7 +25,8 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "*://odoo.com/*",
+        "*://*.odoo.com/*"
       ],
       "js": [
         "content.js"
