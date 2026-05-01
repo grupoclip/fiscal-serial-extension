@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Decode signing key
+        env:
+          CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
+        run: |
+          if [ -z "$CRX_PRIVATE_KEY" ]; then
+            echo "Missing GitHub secret CRX_PRIVATE_KEY (base64-encoded key.pem)." >&2
+            exit 1
+          fi
+          echo "$CRX_PRIVATE_KEY" | base64 -d > key.pem
+
+      - name: Build CRX and install scripts
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: npm run build
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/extension.crx
+            dist/updates.xml
+            dist/install-windows.reg
+            dist/uninstall-windows.reg
+            dist/install-mac.sh
+            dist/uninstall-mac.sh
